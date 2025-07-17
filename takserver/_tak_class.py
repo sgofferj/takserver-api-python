@@ -20,7 +20,7 @@ import requests as req
 req.packages.urllib3.disable_warnings()
 
 
-class takserver:
+class server:
     """Takserver API helper class"""
 
     def __init__(self, host, cert, key):

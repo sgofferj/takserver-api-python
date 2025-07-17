@@ -1,4 +1,3 @@
-"""This is the '__init__.py' of the 'takserver' package!"""
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 # takserver.py from https://github.com/sgofferj/takserver-api-python
@@ -16,12 +15,13 @@
 # limitations under the License.
 #
 
-#from __future__ import annotations
+from __future__ import annotations
 
-from ._tak_class import takserver
-#from ._tak_function import takFunction
+from ._tak_class import server
+
+# from ._tak_function import takFunction
 
 __all__ = [
-    "takserver"#,
-#    "takFunction",
+    "server"  # ,
+    #    "takFunction",
 ]
