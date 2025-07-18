@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "takserver-api-python"
 version = "0.0.1"
-description = "..."
+description = "Python helper module for talking to the (tak.gov) TAK server API."
 readme = "README.md"
 authors = [{ name="Stefan Gofferje", email="hello@gofferje.net" }]
 requires-python = ">=3.12"

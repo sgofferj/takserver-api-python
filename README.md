@@ -6,7 +6,10 @@ Helper module for talking to the (tak.gov) TAK server API.
 
 License: GPL V3
 
-**WARNING: Not for production! Still developing and testing!**
+**WARNING WARNING WARNING**
+This is not for production! I am using this project to learn Python classes, modules and packaging
+and doing something useful at the same time. I primarily uploaded it to Github so others can review
+and comment on it.
 
 **Example:**
 
@@ -22,6 +25,10 @@ print(myserver.listUsers())
 
 ## Functions
 
+- `myserver.isAdmin()`
+  Returns True if the configured certificate has admin rights on the server, otherwise returns False
+  Should be the first thing to call before anything else to prevent errors.
+
 - `myserver.listGroups()`
   Returns all groups on the server.
 
@@ -36,6 +43,3 @@ print(myserver.listUsers())
 
 - `myserver.createUser(username,password,grouplistBoth,grouplistIn,grouplistOut)`
   Creates a new user on the server, returns the result of the API call.
-
-- `myserver.isAdmin()`
-  Returns True if the configured certificate has admin rights on the server, otherwise returns False
