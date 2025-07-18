@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# takserver.py from https://github.com/sgofferj/takserver-api-python
+# _tak_class.py from https://github.com/sgofferj/takserver-api-python
 #
 # Copyright Stefan Gofferje
 #
@@ -28,60 +28,6 @@ class server:
         self.crt = (cert, key)
         self.apiBaseURL = f"https://{host}:8443"
 
-    def listGroups(self):
-        """Returns a list of all groups on the server"""
-        path = "/user-management/api/list-groupnames"
-        url = self.apiBaseURL + path
-        r = req.get(url, cert=self.crt, verify=False)
-        return r.json()
-
-    def groupExists(self, group):
-        """Check if a group exists on the server"""
-        r = self.listGroups()
-        g = next((item for item in r if item["groupname"] == group), None)
-        if g:
-            return True
-        else:
-            return False
-
-    def listUsers(self):
-        """Returns a list of all users on the server"""
-        path = "/user-management/api/list-users"
-        url = self.apiBaseURL + path
-        r = req.get(url, cert=self.crt, verify=False)
-        return r.json()
-
-    def userExists(self, user):
-        """Check if a user exists on the server"""
-        r = self.listUsers()
-        g = next((item for item in r if item["username"] == user), None)
-        if g:
-            return True
-        else:
-            return False
-
-    def createUser(
-        self,
-        username,
-        password,
-        grouplistBoth=None,
-        grouplistIn=None,
-        grouplistOut=None,
-    ):
-        """Create a new user on the server"""
-        path = "/user-management/api/new-user"
-        url = self.server + path
-        headers = {"Content-Type": "application/json"}
-        data = {"username": username, "password": password}
-        if grouplistIn != None:
-            data.update({"groupListIN": grouplistIn})
-        if grouplistOut != None:
-            data.update({"groupListOUT": grouplistOut})
-        if grouplistBoth != None:
-            data.update({"groupList": grouplistBoth})
-        r = req.post(url, headers=headers, json=data, cert=self.crt, verify=False)
-        return r
-
     def isAdmin(self):
         """Check if the configured certificate has admin rights on the server"""
         path = "/Marti/api/util/isAdmin"
@@ -91,3 +37,11 @@ class server:
             return True
         else:
             return False
+
+    from ._tak_file_user_account_management_api import (
+        createOrUpdateFileUser,
+        getAllUsers,
+        getAllGroupNames,
+        userExists,
+        groupExists,
+    )

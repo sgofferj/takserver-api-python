@@ -19,28 +19,42 @@ and comment on it.
 import takserver as ts
 
 myserver = ts.server("localhost","server.pem","server.key")
-print(myserver.isAdmin())
-print(myserver.listUsers())
+if myserver.isAdmin():
+  print(myserver.getAllUsers())
 
 ```
 
 ## Functions
 
-- `myserver.isAdmin()`
+### home-api
+
+Server documentation: [https://docs.tak.gov/api/takserver#tag/home-api](https://docs.tak.gov/api/takserver#tag/home-api)
+
+#### API wrappers
+
+- `server.isAdmin()`
   Returns True if the configured certificate has admin rights on the server, otherwise returns False.
   Should be the first thing to call before anything else to prevent errors.
 
-- `myserver.listGroups()`
+### file-user-account-management-api
+
+Server documentation: [https://docs.tak.gov/api/takserver#tag/home-api](https://docs.tak.gov/api/takserver#tag/home-api)
+
+#### API wrappers
+
+- `server.createOrUpdateFileUser(username,password,grouplistBoth,grouplistIn,grouplistOut)`
+  Creates a new user on the server, returns the result of the API call.
+
+- `server.getAllGroupNames()`
   Returns all groups on the server.
 
-- `myserver.groupExists(group)`
-  Returns True if group exists, otherwise returns False.
-
-- `myserver.listUsers()`
+- `server.getAllUsers()`
   Returns all users on the server.
 
-- `myserver.userExists(user)`
+#### Helper functions
+
+- `server.userExists(user)`
   Returns True if user exists, otherwise returns False.
 
-- `myserver.createUser(username,password,grouplistBoth,grouplistIn,grouplistOut)`
-  Creates a new user on the server, returns the result of the API call.
+- `server.groupExists(group)`
+  Returns True if group exists, otherwise returns False.
