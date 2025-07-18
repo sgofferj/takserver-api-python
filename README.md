@@ -27,7 +27,7 @@ print(myserver.listUsers())
 ## Functions
 
 - `myserver.isAdmin()`
-  Returns True if the configured certificate has admin rights on the server, otherwise returns False
+  Returns True if the configured certificate has admin rights on the server, otherwise returns False.
   Should be the first thing to call before anything else to prevent errors.
 
 - `myserver.listGroups()`
