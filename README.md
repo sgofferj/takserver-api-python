@@ -38,7 +38,7 @@ Server documentation: [https://docs.tak.gov/api/takserver#tag/home-api](https://
 
 ### file-user-account-management-api
 
-Server documentation: [https://docs.tak.gov/api/takserver#tag/home-api](https://docs.tak.gov/api/takserver#tag/home-api)
+Server documentation: [https://docs.tak.gov/api/takserver#tag/file-user-account-management-api](https://docs.tak.gov/api/takserver#tag/file-user-account-management-api)
 
 #### API wrappers
 

@@ -16,7 +16,7 @@
 #
 
 
-"""file-user-account-management-api - https://docs.tak.gov/api/takserver#tag/file-user-account-management-api/operation/createOrUpdateFileUser"""
+"""file-user-account-management-api - https://docs.tak.gov/api/takserver#tag/file-user-account-management-api"""
 
 import requests as req
 
@@ -31,7 +31,7 @@ def createOrUpdateFileUser(
     grouplistIn=None,
     grouplistOut=None,
 ):
-    """Create a new user on the server"""
+    """Create or update a user on the server"""
     path = "/user-management/api/new-user"
     url = self.server + path
     headers = {"Content-Type": "application/json"}

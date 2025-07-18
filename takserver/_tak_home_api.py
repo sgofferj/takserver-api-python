@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# _tak_class.py from https://github.com/sgofferj/takserver-api-python
+# _tak_users.py from https://github.com/sgofferj/takserver-api-python
 #
 # Copyright Stefan Gofferje
 #
@@ -15,25 +15,20 @@
 # limitations under the License.
 #
 
+
+"""home-api - https://docs.tak.gov/api/takserver#tag/home-api"""
+
 import requests as req
 
 req.packages.urllib3.disable_warnings()
 
 
-class server:
-    """Takserver API helper class"""
-
-    def __init__(self, host, cert, key):
-        """Initialize a server instance."""
-        self.crt = (cert, key)
-        self.apiBaseURL = f"https://{host}:8443"
-
-    from ._tak_home_api import isAdmin
-
-    from ._tak_file_user_account_management_api import (
-        createOrUpdateFileUser,
-        getAllUsers,
-        getAllGroupNames,
-        userExists,
-        groupExists,
-    )
+def isAdmin(self):
+    """Check if the configured certificate has admin rights on the server"""
+    path = "/Marti/api/util/isAdmin"
+    url = self.apiBaseURL + path
+    r = req.get(url, cert=self.crt, verify=False)
+    if r.text == "true":
+        return True
+    else:
+        return False
