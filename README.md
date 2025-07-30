@@ -98,10 +98,10 @@ Server documentation: [https://docs.tak.gov/api/takserver#tag/mission-api](https
 
   Adds UIDs to a mission.
 
-  > [!NOTE]
-  > Hashes will be implemented later. It's on my list.<br>
-  > UIDs is a list (`[]`) of UIDs of CoTs sent to the server before the addMissionContent call. Those CoTs must be sent to a stream input which has archiving
-  > enabled and they must contain the attribute `<marti><dest mission="missionname"></marti>` in the detail attribute.
+> [!NOTE]
+> Hashes will be implemented later. It's on my list.<br>
+> UIDs is a list (`[]`) of UIDs of CoTs sent to the server before the addMissionContent call. Those CoTs must be sent to a stream input which has archiving
+> enabled and they must contain the attribute `<marti><dest mission="missionname"></marti>` in the detail attribute.
 
 - `removeMissionContent(name, uid, creatorUid)`
 
