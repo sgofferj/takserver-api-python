@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# _tak_users.py from https://github.com/sgofferj/takserver-api-python
+# _tak_file_user_account_management_api.py from https://github.com/sgofferj/takserver-api-python
 #
 # Copyright Stefan Gofferje
 #
@@ -43,7 +43,10 @@ def createOrUpdateFileUser(
     if grouplistBoth != None:
         data.update({"groupList": grouplistBoth})
     r = req.post(url, headers=headers, json=data, cert=self.crt, verify=False)
-    return r
+    if r.status_code != 200:
+        return r.status_code, r.text
+    else:
+        return r.status_code, r.json()
 
 
 def getAllUsers(self):
@@ -51,7 +54,10 @@ def getAllUsers(self):
     path = "/user-management/api/list-users"
     url = self.apiBaseURL + path
     r = req.get(url, cert=self.crt, verify=False)
-    return r.json()
+    if r.status_code != 200:
+        return r.status_code, r.text
+    else:
+        return r.status_code, r.json()
 
 
 def getAllGroupNames(self):
@@ -59,7 +65,10 @@ def getAllGroupNames(self):
     path = "/user-management/api/list-groupnames"
     url = self.apiBaseURL + path
     r = req.get(url, cert=self.crt, verify=False)
-    return r.json()
+    if r.status_code != 200:
+        return r.status_code, r.text
+    else:
+        return r.status_code, r.json()
 
 
 def userExists(self, user):
