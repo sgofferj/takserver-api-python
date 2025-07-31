@@ -88,13 +88,17 @@ Server documentation: [https://docs.tak.gov/api/takserver#tag/mission-api](https
 
 - `createMission(name, creatorUid, group="", defaultrole="", classification="")`
 
-  Creates a mission
+  Creates a mission. You will want to save the token in the returned data for further use.
 
-- `setMissionRole(name, clientUid, userName, role)`
+- `createMissionSubscription(name, uid, topic="", password="", secago="", start="", end="")`
+
+  Creates a mission subscription. You will want to save the token in the returned data for further use.
+
+- `setMissionRole(name, clientUid, userName, role, token)`
 
   Sets the role for a user in mission `name`. Possible roles are: `"MISSION_OWNER"`, `"MISSION_SUBSCRIBER"`, `"MISSION_READONLY_SUBSCRIBER"`
 
-- `addMissionContent(name, uids, creatorUid)`
+- `addMissionContent(name, uids, creatorUid, token)`
 
   Adds uids to a mission. uids is a list (`[]`) of UIDs of CoTs sent to the server before the addMissionContent call. Those CoTs must be sent
   to a stream input which has archiving enabled and they must contain the attribute `<marti><dest mission="missionname"></marti>` in the detail attribute.
@@ -102,6 +106,6 @@ Server documentation: [https://docs.tak.gov/api/takserver#tag/mission-api](https
 > [!NOTE]
 > Hashes will be implemented later. It's on my list.<br>
 
-- `removeMissionContent(name, uid, creatorUid)`
+- `removeMissionContent(name, uid, creatorUid, token)`
 
   Removes object `uid` from mission `name`
