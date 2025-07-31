@@ -44,6 +44,7 @@ class server:
         getMissionSubscriptions,
         getMissionSubscriptionRoles,
         createMission,
+        createMissionSubscription,
         setMissionRole,
         addMissionContent,
         removeMissionContent,
