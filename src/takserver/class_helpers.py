@@ -17,6 +17,7 @@
 
 import ssl
 import aiohttp
+from typing import Any
 
 
 def get_ssl_context(self) -> aiohttp.TCPConnector:
@@ -28,7 +29,9 @@ def get_ssl_context(self) -> aiohttp.TCPConnector:
     return tcpconn
 
 
-async def request(self, type, url, headers=None, json=None):
+async def request(
+    self, type: str, url: str, headers: dict | None = None, json: dict | None = None
+) -> tuple[int, Any]:
     try:
         r = "Error"
         match type:

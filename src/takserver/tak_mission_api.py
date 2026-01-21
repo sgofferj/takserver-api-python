@@ -19,9 +19,10 @@
 """home-api - https://docs.tak.gov/api/takserver#tag/mission-api"""
 
 import asyncio
+from typing import Any
 
 
-async def get_mission(self, name):
+async def get_mission(self, name: str) -> tuple[int, Any]:
     """Returns a mission"""
     path = f"/Marti/api/missions/{name}"
     url = self.api_base_url + path
@@ -30,7 +31,7 @@ async def get_mission(self, name):
     return s, r
 
 
-async def get_mission_role(self, name):
+async def get_mission_role(self, name: str) -> tuple[int, Any]:
     """Returns role in the mission"""
     path = f"/Marti/api/missions/{name}/role"
     url = self.api_base_url + path
@@ -39,7 +40,7 @@ async def get_mission_role(self, name):
     return s, r
 
 
-async def get_mission_subscriptions(self, name):
+async def get_mission_subscriptions(self, name: str) -> tuple[int, Any]:
     """Returns subscribtions to the mission"""
     path = f"/Marti/api/missions/{name}/subscriptions"
     url = self.api_base_url + path
@@ -48,7 +49,7 @@ async def get_mission_subscriptions(self, name):
     return s, r
 
 
-async def get_mission_subscription_roles(self, name):
+async def get_mission_subscription_roles(self, name: str) -> tuple[int, Any]:
     """Returns subscribtions to the mission"""
     path = f"/Marti/api/missions/{name}/subscriptions/roles"
     url = self.api_base_url + path
@@ -58,8 +59,13 @@ async def get_mission_subscription_roles(self, name):
 
 
 async def create_mission(
-    self, name, creatorUid, group="", defaultrole="", classification=""
-):
+    self,
+    name: str,
+    creatorUid: str,
+    group: str = "",
+    defaultrole: str = "",
+    classification: str = "",
+) -> tuple[int, Any]:
     """Creates a mission"""
     path = f"/Marti/api/missions/{name}?creatorUid={creatorUid}"
     if group != "":
@@ -75,8 +81,15 @@ async def create_mission(
 
 
 async def create_mission_subscription(
-    self, name, uid, topic="", password="", secago="", start="", end=""
-):
+    self,
+    name: str,
+    uid: str,
+    topic: str = "",
+    password: str = "",
+    secago: str = "",
+    start: str = "",
+    end: str = "",
+) -> tuple[int, Any]:
     """Creates a mission subscription"""
     path = f"/Marti/api/missions/{name}/subscription?uid={uid}"
     if topic != "":
@@ -95,7 +108,9 @@ async def create_mission_subscription(
     return s, r
 
 
-async def set_mission_role(self, name, clientUid, username, role, token):
+async def set_mission_role(
+    self, name: str, clientUid: str, username: str, role: str, token: str
+) -> tuple[int, Any]:
     """Sets the role for a subscriber"""
     path = f"/Marti/api/missions/{name}/role?clientUid={clientUid}&username={username}&role={role}"
     url = self.api_base_url + path
@@ -104,7 +119,9 @@ async def set_mission_role(self, name, clientUid, username, role, token):
     return s, r
 
 
-async def add_mission_content(self, name, uids, MY_UID, token):
+async def add_mission_content(
+    self, name: str, uids: list[str], MY_UID: str, token: str
+) -> tuple[int, Any]:
     path = f"/Marti/api/missions/{name}/contents?creatorUid={MY_UID}"
     url = self.api_base_url + path
     headers = {"Authorization": f"Bearer {token}", "Content-Type": "application/json"}
@@ -113,7 +130,9 @@ async def add_mission_content(self, name, uids, MY_UID, token):
     return s, r
 
 
-async def remove_mission_content(self, name, uid, MY_UID, token):
+async def remove_mission_content(
+    self, name: str, uid: str, MY_UID: str, token: str
+) -> tuple[int, Any]:
     path = f"/Marti/api/missions/{name}/contents?creatorUid={MY_UID}&uid={uid}"
     headers = {"Authorization": f"Bearer {token}"}
     url = self.api_base_url + path

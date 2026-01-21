@@ -19,6 +19,7 @@
 """home-api - https://docs.tak.gov/api/takserver#tag/home-api"""
 
 import asyncio
+from typing import Any
 
 
 async def is_admin(self) -> bool:

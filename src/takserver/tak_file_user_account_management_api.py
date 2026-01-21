@@ -19,16 +19,17 @@
 """file-user-account-management-api - https://docs.tak.gov/api/takserver#tag/file-user-account-management-api"""
 
 import asyncio
+from typing import Any
 
 
 async def create_or_update_file_user(
     self,
-    username,
-    password,
-    group_list_both=None,
-    group_list_in=None,
-    group_list_out=None,
-):
+    username: str,
+    password: str,
+    group_list_both: list[str] | None = None,
+    group_list_in: list[str] | None = None,
+    group_list_out: list[str] | None = None,
+) -> tuple[int, Any]:
     """Create or update a user on the server"""
     path = "/user-management/api/new-user"
     url = self.api_base_url + path
@@ -44,7 +45,7 @@ async def create_or_update_file_user(
     return s, r
 
 
-async def get_all_users(self):
+async def get_all_users(self) -> tuple[int, Any]:
     """Returns a list of all users on the server"""
     path = "/user-management/api/list-users"
     url = self.api_base_url + path
@@ -53,7 +54,7 @@ async def get_all_users(self):
     return s, r
 
 
-async def get_all_group_names(self):
+async def get_all_group_names(self) -> tuple[int, Any]:
     """Returns a list of all groups on the server"""
     path = "/user-management/api/list-groupnames"
     url = self.api_base_url + path
@@ -62,7 +63,7 @@ async def get_all_group_names(self):
     return s, r
 
 
-def user_exists(self, user) -> bool:
+def user_exists(self, user: str) -> bool:
     """Check if a user exists on the server"""
     r = self.get_all_users()
     g = next((item for item in r if item["username"] == user), None)
@@ -72,7 +73,7 @@ def user_exists(self, user) -> bool:
         return False
 
 
-def group_exists(self, group) -> bool:
+def group_exists(self, group: str) -> bool:
     """Check if a group exists on the server"""
     r = self.get_all_group_names()
     g = next((item for item in r if item["groupname"] == group), None)

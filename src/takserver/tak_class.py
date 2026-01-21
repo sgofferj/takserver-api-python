@@ -23,7 +23,7 @@ import asyncio
 class server:
     """Takserver API helper class"""
 
-    def __init__(self, host, cert, key):
+    def __init__(self, host: str, cert: str, key: str) -> None:
         """Initialize a server instance."""
         self.crt = (cert, key)
         self.cert = cert
