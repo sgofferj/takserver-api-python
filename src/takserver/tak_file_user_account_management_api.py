@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# _tak_file_user_account_management_api.py from https://github.com/sgofferj/takserver-api-python
+# tak_file_user_account_management_api.py from https://github.com/sgofferj/takserver-api-python
 #
 # Copyright Stefan Gofferje
 #
@@ -18,62 +18,53 @@
 
 """file-user-account-management-api - https://docs.tak.gov/api/takserver#tag/file-user-account-management-api"""
 
-import requests as req
-
-req.packages.urllib3.disable_warnings()
+import asyncio
 
 
-def createOrUpdateFileUser(
+async def create_or_update_file_user(
     self,
     username,
     password,
-    grouplistBoth=None,
-    grouplistIn=None,
-    grouplistOut=None,
+    group_list_both=None,
+    group_list_in=None,
+    group_list_out=None,
 ):
     """Create or update a user on the server"""
     path = "/user-management/api/new-user"
-    url = self.server + path
+    url = self.api_base_url + path
     headers = {"Content-Type": "application/json"}
     data = {"username": username, "password": password}
-    if grouplistIn != None:
-        data.update({"groupListIN": grouplistIn})
-    if grouplistOut != None:
-        data.update({"groupListOUT": grouplistOut})
-    if grouplistBoth != None:
-        data.update({"groupList": grouplistBoth})
-    r = req.post(url, headers=headers, json=data, cert=self.crt, verify=False)
-    if r.status_code != 200:
-        return r.status_code, r.text
-    else:
-        return r.status_code, r.json()
+    if group_list_in != None:
+        data.update({"groupListIN": group_list_in})
+    if group_list_out != None:
+        data.update({"groupListOUT": group_list_out})
+    if group_list_both != None:
+        data.update({"groupList": group_list_both})
+    s, r = await self.request("post", url, headers=headers, json=data)
+    return s, r
 
 
-def getAllUsers(self):
+async def get_all_users(self):
     """Returns a list of all users on the server"""
     path = "/user-management/api/list-users"
-    url = self.apiBaseURL + path
-    r = req.get(url, cert=self.crt, verify=False)
-    if r.status_code != 200:
-        return r.status_code, r.text
-    else:
-        return r.status_code, r.json()
+    url = self.api_base_url + path
+    headers = {"Content-Type": "application/json"}
+    s, r = await self.request("get", url, headers=headers)
+    return s, r
 
 
-def getAllGroupNames(self):
+async def get_all_group_names(self):
     """Returns a list of all groups on the server"""
     path = "/user-management/api/list-groupnames"
-    url = self.apiBaseURL + path
-    r = req.get(url, cert=self.crt, verify=False)
-    if r.status_code != 200:
-        return r.status_code, r.text
-    else:
-        return r.status_code, r.json()
+    url = self.api_base_url + path
+    headers = {"Content-Type": "application/json"}
+    s, r = await self.request("get", url, headers=headers)
+    return s, r
 
 
-def userExists(self, user):
+def user_exists(self, user) -> bool:
     """Check if a user exists on the server"""
-    r = self.listUsers()
+    r = self.get_all_users()
     g = next((item for item in r if item["username"] == user), None)
     if g:
         return True
@@ -81,9 +72,9 @@ def userExists(self, user):
         return False
 
 
-def groupExists(self, group):
+def group_exists(self, group) -> bool:
     """Check if a group exists on the server"""
-    r = self.listGroups()
+    r = self.get_all_group_names()
     g = next((item for item in r if item["groupname"] == group), None)
     if g:
         return True

@@ -3,3 +3,4 @@ venv
 *.ipynb*
 *.pem
 *.xml
+test.py

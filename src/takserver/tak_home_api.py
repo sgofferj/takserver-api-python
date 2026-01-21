@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# takserver.py from https://github.com/sgofferj/takserver-api-python
+# tak_home_api.py from https://github.com/sgofferj/takserver-api-python
 #
 # Copyright Stefan Gofferje
 #
@@ -15,13 +15,19 @@
 # limitations under the License.
 #
 
-from __future__ import annotations
 
-from ._tak_class import server
+"""home-api - https://docs.tak.gov/api/takserver#tag/home-api"""
 
-# from ._tak_function import takFunction
+import asyncio
 
-__all__ = [
-    "server"  # ,
-    #    "takFunction",
-]
+
+async def is_admin(self) -> bool:
+    """Check if the configured certificate has admin rights on the server"""
+    path = "/Marti/api/util/isAdmin"
+    url = self.api_base_url + path
+    headers = {"Content-Type": "application/json"}
+    s, r = await self.request("get", url, headers=headers)
+    if r == True:
+        return True
+    else:
+        return False

@@ -7,19 +7,23 @@ Helper module for talking to the (tak.gov) TAK server API.
 License: GPL V3
 
 > [!CAUTION]
-> This is not for production! I am still working on the library on a daily basis and things can change.
-> However, I have tested all functions before pushing to GitHub, so they _should_ work.
-> **USE AT YOUR OWN RISK**
+> I have changed all function names from camelCase to snake_case to be more compliant with Python style guides.
+> Please check the Wiki for the new function names. Additionally everything is using asyncio and aiohttp now.
 
 **Example:**
 
 ```python
 
 import takserver as ts
+import asyncio
 
-myserver = ts.server("localhost","server.pem","server.key")
-if myserver.isAdmin():
-  print(myserver.getAllUsers())
+async def main()
+    myserver = ts.server("localhost","server.pem","server.key")
+    if await myserver.is_admin():
+      print(await myserver.get_all_users())
+      await myserver.close()
+
+asyncio.run(main())
 
 ```
 
