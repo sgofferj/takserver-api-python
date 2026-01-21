@@ -41,7 +41,7 @@ async def get_mission_role(self, name: str) -> tuple[int, Any]:
 
 
 async def get_mission_subscriptions(self, name: str) -> tuple[int, Any]:
-    """Returns subscribtions to the mission"""
+    """Returns subscriptions to the mission"""
     path = f"/Marti/api/missions/{name}/subscriptions"
     url = self.api_base_url + path
     headers = {"Content-Type": "application/json"}
@@ -50,7 +50,7 @@ async def get_mission_subscriptions(self, name: str) -> tuple[int, Any]:
 
 
 async def get_mission_subscription_roles(self, name: str) -> tuple[int, Any]:
-    """Returns subscribtions to the mission"""
+    """Returns subscriptions to the mission"""
     path = f"/Marti/api/missions/{name}/subscriptions/roles"
     url = self.api_base_url + path
     headers = {"Content-Type": "application/json"}
