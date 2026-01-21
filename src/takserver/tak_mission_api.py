@@ -98,18 +98,16 @@ async def create_mission_subscription(
 async def set_mission_role(self, name, clientUid, username, role, token):
     """Sets the role for a subscriber"""
     path = f"/Marti/api/missions/{name}/role?clientUid={clientUid}&username={username}&role={role}"
-    headers = {"Authorization": f"Bearer {token}"}
     url = self.api_base_url + path
-    headers = {"Content-Type": "application/json"}
+    headers = {"Authorization": f"Bearer {token}", "Content-Type": "application/json"}
     s, r = await self.request("put", url, headers=headers)
     return s, r
 
 
 async def add_mission_content(self, name, uids, MY_UID, token):
     path = f"/Marti/api/missions/{name}/contents?creatorUid={MY_UID}"
-    headers = {"Authorization": f"Bearer {token}"}
     url = self.api_base_url + path
-    headers = {"Content-Type": "application/json"}
+    headers = {"Authorization": f"Bearer {token}", "Content-Type": "application/json"}
     data = {"uids": uids}
     s, r = await self.request("put", url, headers=headers, json=data)
     return s, r
