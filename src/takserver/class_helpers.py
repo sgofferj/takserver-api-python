@@ -15,9 +15,9 @@
 # limitations under the License.
 #
 
+from typing import Any
 import ssl
 import aiohttp
-from typing import Any
 
 
 def get_ssl_context(self) -> aiohttp.TCPConnector:

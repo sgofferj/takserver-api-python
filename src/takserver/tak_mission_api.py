@@ -18,8 +18,8 @@
 
 """home-api - https://docs.tak.gov/api/takserver#tag/mission-api"""
 
-import asyncio
 from typing import Any
+import asyncio
 
 
 async def get_mission(self, name: str) -> tuple[int, Any]:

@@ -18,8 +18,8 @@
 
 """file-user-account-management-api - https://docs.tak.gov/api/takserver#tag/file-user-account-management-api"""
 
-import asyncio
 from typing import Any
+import asyncio
 
 
 async def create_or_update_file_user(
